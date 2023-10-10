@@ -42,10 +42,15 @@ def test_login_form():
 def test_add_catalog_item_to_cart():
     bike_light_add_to_cart = driver.find_element(By.XPATH, "//button[@id='add-to-cart-sauce-labs-bike-light']")
     bike_light_add_to_cart.click()
-
     time.sleep(TIMEOUT)
     shopping_cart_badge = driver.find_element(By.XPATH, "//span[@class='shopping_cart_badge']")
     assert shopping_cart_badge.text == "1"
+
+def test_from_catalog_to_picture():
+    red_tshirt_img = driver.find_element(By.XPATH, "//a[@id='item_3_img_link']")
+    red_tshirt_img.click()
+    time.sleep(TIMEOUT)
+    assert driver.current_url == "https://www.saucedemo.com/inventory-item.html?id=3"
 
 def test_go_to_cart():
     shopping_cart = driver.find_element(By.XPATH, "//a[@class='shopping_cart_link']")
