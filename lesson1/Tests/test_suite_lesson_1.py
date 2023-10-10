@@ -3,28 +3,47 @@ from selenium.webdriver.common.by import By
 import time
 from faker import Faker
 
+TIMEOUT = 1
+CREDENTIALS_ERROR_TEXT = "Epic sadface: Username and password do not match any user in this service"
 driver = webdriver.Chrome()
 
-def test_login_form():
+
+def test_login_form_error():
     driver.get("https://www.saucedemo.com/")
 
     username_field = driver.find_element(By.XPATH, '//input[@data-test="username"]')
+    username_field.send_keys("user")
+
+    password_field = driver.find_element(By.XPATH, '//input[@data-test="password"]')
+    password_field.send_keys("user")
+
+    login_button = driver.find_element(By.XPATH, '//input[@data-test="login-button"]')
+    login_button.click()
+
+    time.sleep(TIMEOUT)
+    assert driver.current_url == "https://www.saucedemo.com/"
+
+def test_login_form():
+
+    username_field = driver.find_element(By.XPATH, '//input[@data-test="username"]')
+    username_field.clear()
     username_field.send_keys("standard_user")
 
     password_field = driver.find_element(By.XPATH, '//input[@data-test="password"]')
+    password_field.clear()
     password_field.send_keys("secret_sauce")
 
     login_button = driver.find_element(By.XPATH, '//input[@data-test="login-button"]')
     login_button.click()
 
-    time.sleep(1)
+    time.sleep(TIMEOUT)
     assert driver.current_url == "https://www.saucedemo.com/inventory.html"
 
 def test_add_item_to_cart():
     bike_light_add_to_cart = driver.find_element(By.XPATH, "//button[@id='add-to-cart-sauce-labs-bike-light']")
     bike_light_add_to_cart.click()
 
-    time.sleep(1)
+    time.sleep(TIMEOUT)
     shopping_cart_badge = driver.find_element(By.XPATH, "//span[@class='shopping_cart_badge']")
     assert shopping_cart_badge.text == "1"
 
@@ -32,7 +51,7 @@ def test_go_to_cart():
     shopping_cart = driver.find_element(By.XPATH, "//a[@class='shopping_cart_link']")
     shopping_cart.click()
 
-    time.sleep(1)
+    time.sleep(TIMEOUT)
     assert driver.current_url == "https://www.saucedemo.com/cart.html"
 
     bike_light_title = driver.find_element(By.XPATH, "//a[@id='item_0_title_link']")
@@ -42,7 +61,7 @@ def test_checkout():
     checkout_button = driver.find_element(By.XPATH, "//button[@id='checkout']")
     checkout_button.click()
 
-    time.sleep(1)
+    time.sleep(TIMEOUT)
     assert driver.current_url == "https://www.saucedemo.com/checkout-step-one.html"
 
     fake = Faker()
@@ -58,7 +77,7 @@ def test_checkout():
     continue_button = driver.find_element(By.XPATH, "//input[@id='continue']")
     continue_button.click()
 
-    time.sleep(1)
+    time.sleep(TIMEOUT)
     assert driver.current_url == "https://www.saucedemo.com/checkout-step-two.html"
 
     cart_item_title = driver.find_element(By.XPATH, "//div[@class='inventory_item_name']")
@@ -67,7 +86,7 @@ def test_checkout():
     finish_button = driver.find_element(By.XPATH, "//button[@id='finish']")
     finish_button.click()
 
-    time.sleep(1)
+    time.sleep(TIMEOUT)
     assert driver.current_url == "https://www.saucedemo.com/checkout-complete.html"
 
 def test_logout_link():
@@ -75,11 +94,11 @@ def test_logout_link():
     burger_menu = driver.find_element(By.XPATH, "//button[@id='react-burger-menu-btn']")
     burger_menu.click()
 
-    time.sleep(1)
+    time.sleep(TIMEOUT)
     logout_link = driver.find_element(By.XPATH, "//a[@id='logout_sidebar_link']")
     logout_link.click()
 
-    time.sleep(1)
+    time.sleep(TIMEOUT)
     assert driver.current_url == "https://www.saucedemo.com/"
 
     driver.quit()
