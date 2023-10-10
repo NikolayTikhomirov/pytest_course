@@ -3,7 +3,7 @@ from selenium.webdriver.common.by import By
 import time
 from faker import Faker
 
-TIMEOUT = 1
+TIMEOUT = 0.1
 CREDENTIALS_ERROR_TEXT = "Epic sadface: Username and password do not match any user in this service"
 driver = webdriver.Chrome()
 
@@ -39,7 +39,7 @@ def test_login_form():
     time.sleep(TIMEOUT)
     assert driver.current_url == "https://www.saucedemo.com/inventory.html"
 
-def test_add_item_to_cart():
+def test_add_catalog_item_to_cart():
     bike_light_add_to_cart = driver.find_element(By.XPATH, "//button[@id='add-to-cart-sauce-labs-bike-light']")
     bike_light_add_to_cart.click()
 
