@@ -39,6 +39,21 @@ def test_login_form():
     time.sleep(TIMEOUT)
     assert driver.current_url == "https://www.saucedemo.com/inventory.html"
 
+def test_about_link():
+
+    burger_menu = driver.find_element(By.XPATH, "//button[@id='react-burger-menu-btn']")
+    burger_menu.click()
+
+    time.sleep(TIMEOUT)
+    about_link = driver.find_element(By.XPATH, "//a[@id='about_sidebar_link']")
+    about_link.click()
+
+    time.sleep(TIMEOUT)
+    assert driver.current_url == "https://saucelabs.com/"
+    driver.back()
+    time.sleep(TIMEOUT)
+    assert driver.current_url == "https://www.saucedemo.com/inventory.html"
+
 def test_add_catalog_item_to_cart():
     bike_light_add_to_cart = driver.find_element(By.XPATH, "//button[@id='add-to-cart-sauce-labs-bike-light']")
     bike_light_add_to_cart.click()
