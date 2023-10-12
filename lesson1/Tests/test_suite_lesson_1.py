@@ -205,11 +205,6 @@ def test_reset_app_state_link():
     assert len(shopping_cart_badge) == 0
 
 def test_logout_link():
-
-    burger_menu = driver.find_element(By.XPATH, "//button[@id='react-burger-menu-btn']")
-    burger_menu.click()
-
-    time.sleep(TIMEOUT)
     logout_link = driver.find_element(By.XPATH, "//a[@id='logout_sidebar_link']")
     logout_link.click()
 
