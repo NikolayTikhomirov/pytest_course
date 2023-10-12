@@ -172,6 +172,21 @@ def test_from_catalog_to_card_via_name():
     time.sleep(TIMEOUT)
     assert driver.current_url == "https://www.saucedemo.com/inventory-item.html?id=2"
 
+def test_delete_item_via_card():
+    onesie_add_to_cart = driver.find_element(By.XPATH, "//button[@data-test='add-to-cart-sauce-labs-onesie']")
+    onesie_add_to_cart.click()
+    time.sleep(TIMEOUT)
+    shopping_cart_badge = driver.find_element(By.XPATH, "//span[@class='shopping_cart_badge']")
+    assert shopping_cart_badge.text == "1"
+
+    onesie_remove_from_cart = driver.find_element(By.XPATH, "//button[@data-test='remove-sauce-labs-onesie']")
+    onesie_remove_from_cart.click()
+    time.sleep(TIMEOUT)
+
+    shopping_cart_badge = driver.find_elements(By.XPATH, "//span[@class='shopping_cart_badge']")
+    assert len(shopping_cart_badge) == 0
+
+
 def test_logout_link():
 
     burger_menu = driver.find_element(By.XPATH, "//button[@id='react-burger-menu-btn']")
