@@ -186,6 +186,23 @@ def test_delete_item_via_card():
     shopping_cart_badge = driver.find_elements(By.XPATH, "//span[@class='shopping_cart_badge']")
     assert len(shopping_cart_badge) == 0
 
+def test_reset_app_state_link():
+    onesie_add_to_cart = driver.find_element(By.XPATH, "//button[@data-test='add-to-cart-sauce-labs-onesie']")
+    onesie_add_to_cart.click()
+    time.sleep(TIMEOUT)
+    shopping_cart_badge = driver.find_element(By.XPATH, "//span[@class='shopping_cart_badge']")
+    assert shopping_cart_badge.text == "1"
+
+    burger_menu = driver.find_element(By.XPATH, "//button[@id='react-burger-menu-btn']")
+    burger_menu.click()
+    time.sleep(TIMEOUT)
+
+    reset_link = driver.find_element(By.XPATH, "//a[@id='reset_sidebar_link']")
+    reset_link.click()
+    time.sleep(TIMEOUT)
+
+    shopping_cart_badge = driver.find_elements(By.XPATH, "//span[@class='shopping_cart_badge']")
+    assert len(shopping_cart_badge) == 0
 
 def test_logout_link():
 
