@@ -123,6 +123,17 @@ def test_checkout():
     time.sleep(TIMEOUT)
     assert driver.current_url == "https://www.saucedemo.com/checkout-complete.html"
 
+def test_all_items_link():
+    burger_menu = driver.find_element(By.XPATH, "//button[@id='react-burger-menu-btn']")
+    burger_menu.click()
+
+    time.sleep(TIMEOUT)
+    all_items = driver.find_element(By.XPATH, "//a[@id='inventory_sidebar_link']")
+    all_items.click()
+
+    time.sleep(TIMEOUT)
+    assert driver.current_url == "https://www.saucedemo.com/inventory.html"
+
 def test_logout_link():
 
     burger_menu = driver.find_element(By.XPATH, "//button[@id='react-burger-menu-btn']")
