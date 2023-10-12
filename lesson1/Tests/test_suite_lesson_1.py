@@ -166,6 +166,12 @@ def test_price_az_filter():
     time.sleep(TIMEOUT)
     assert first_item_name == "Sauce Labs Backpack"
 
+def test_from_catalog_to_card_via_name():
+    onesie_link_name = driver.find_element(By.XPATH, "//div[text()='Sauce Labs Onesie']")
+    onesie_link_name.click()
+    time.sleep(TIMEOUT)
+    assert driver.current_url == "https://www.saucedemo.com/inventory-item.html?id=2"
+
 def test_logout_link():
 
     burger_menu = driver.find_element(By.XPATH, "//button[@id='react-burger-menu-btn']")
