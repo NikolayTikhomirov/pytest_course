@@ -134,6 +134,38 @@ def test_all_items_link():
     time.sleep(TIMEOUT)
     assert driver.current_url == "https://www.saucedemo.com/inventory.html"
 
+def test_name_za_filter():
+    name_desc_filter = driver.find_element(By.XPATH, '//option[@value="za"]')
+    name_desc_filter.click()
+    first_item = driver.find_element(By.XPATH, '//div[@class="inventory_item"][1]')
+    first_item_name = first_item.text.splitlines()[0]
+    time.sleep(TIMEOUT)
+    assert first_item_name == "Test.allTheThings() T-Shirt (Red)"
+
+def test_price_lohi_filter():
+    price_asc_filter = driver.find_element(By.XPATH, '//option[@value="lohi"]')
+    price_asc_filter.click()
+    first_item = driver.find_element(By.XPATH, '//div[@class="inventory_item"][1]')
+    first_item_name = first_item.text.splitlines()[2]
+    time.sleep(TIMEOUT)
+    assert first_item_name == "$7.99"
+
+def test_price_hilo_filter():
+    price_desc_filter = driver.find_element(By.XPATH, '//option[@value="hilo"]')
+    price_desc_filter.click()
+    first_item = driver.find_element(By.XPATH, '//div[@class="inventory_item"][1]')
+    first_item_name = first_item.text.splitlines()[2]
+    time.sleep(TIMEOUT)
+    assert first_item_name == "$49.99"
+
+def test_price_az_filter():
+    name_asc_filter = driver.find_element(By.XPATH, '//option[@value="az"]')
+    name_asc_filter.click()
+    first_item = driver.find_element(By.XPATH, '//div[@class="inventory_item"][1]')
+    first_item_name = first_item.text.splitlines()[0]
+    time.sleep(TIMEOUT)
+    assert first_item_name == "Sauce Labs Backpack"
+
 def test_logout_link():
 
     burger_menu = driver.find_element(By.XPATH, "//button[@id='react-burger-menu-btn']")
