@@ -37,4 +37,4 @@ print(system.view_all_users())
 # Удаление пользователя по email
 print(system.delete_user_by_email("alex@example.com"))  
 # Удаление всех пользователей
-print(system.delete_all_users())  
+print(system.delete_all_users())
