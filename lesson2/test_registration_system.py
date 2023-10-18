@@ -13,6 +13,7 @@ def test_registration_without_pre_post_conditions():
     system = RegistrationSystem()
     system.register("Алекс", "alex@example.com", "+1234567890")
     users = system.view_all_users()
+    print(users)
     assert "alex@example.com" in users  # Ожидаемый результат
 
 def test_registration_with_pre_post_conditions(init_system):

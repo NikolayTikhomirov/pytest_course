@@ -31,10 +31,10 @@ class RegistrationSystem:
 system = RegistrationSystem()
 
 # Регистрация пользователя
-print(system.register("Алекс", "alex@example.com", "+1234567890"))  
+print(system.register("Алекс", "alex@example.com", "+1234567890"))
 # Просмотр всех пользователей
-print(system.view_all_users())  
+print(system.view_all_users())
 # Удаление пользователя по email
-print(system.delete_user_by_email("alex@example.com"))  
+print(system.delete_user_by_email("alex@example.com"))
 # Удаление всех пользователей
 print(system.delete_all_users())
