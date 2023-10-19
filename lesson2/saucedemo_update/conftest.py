@@ -7,6 +7,3 @@ def driver():
     yield driver 
     print('\nquit browser...')
     driver.quit()
-
-
-
