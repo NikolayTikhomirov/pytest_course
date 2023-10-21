@@ -21,9 +21,8 @@ def driver(chrome_options):
     driver.quit()
 
 @pytest.fixture()
-def logged_in_user(driver):
+def site_auth(driver):
     driver.get(MAIN_PAGE)
     driver.find_element(*USERNAME_FIELD).send_keys(LOGIN)
     driver.find_element(*PASSWORD_FIELD).send_keys(PASSWORD)
     driver.find_element(*LOGIN_BUTTON).click()
-
