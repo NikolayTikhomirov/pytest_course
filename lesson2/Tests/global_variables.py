@@ -8,7 +8,11 @@ WRONG_PASSWORD = "unknown_password"
 MAIN_PAGE = "https://www.saucedemo.com/"
 INVENTORY_PAGE = "https://www.saucedemo.com/inventory.html"
 CART_PAGE = "https://www.saucedemo.com/cart.html"
+COMPANY_PAGE = "https://saucelabs.com/"
+CHECKOUT_STEP_1 = "https://www.saucedemo.com/checkout-step-one.html"
+CHECKOUT_STEP_2 = "https://www.saucedemo.com/checkout-step-two.html"
+CHECKOUT_COMPLETE = "https://www.saucedemo.com/checkout-complete.html"
 
+# Timeout
 TIMEOUT = 0.1
-
-# driver = webdriver.Chrome()
+MAX_TIMEOUT = 10
