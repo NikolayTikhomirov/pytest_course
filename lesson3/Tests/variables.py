@@ -1,6 +1,7 @@
 from selenium.webdriver.common.by import By
 
 # Variables
+TIMEOUT = 10
 MAX_TIMEOUT = 60
 PASSWORD = "password"
 LOGIN = "login"
