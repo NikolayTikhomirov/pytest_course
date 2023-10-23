@@ -8,7 +8,7 @@ from time import sleep
 def chrome_options():
     options = Options()
     options.add_argument('--incognito')
-    # options.add_argument('--headless')
+    options.add_argument('--headless')
     return options
 
 @pytest.fixture
