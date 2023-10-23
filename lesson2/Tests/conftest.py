@@ -22,7 +22,7 @@ def driver(chrome_options):
     driver.quit()
 
 @pytest.fixture
-def site_auth(driver):
+def log_in(driver):
     driver.get(gv.MAIN_PAGE)
     driver.find_element(*l.USERNAME_FIELD).send_keys(gv.LOGIN)
     driver.find_element(*l.PASSWORD_FIELD).send_keys(gv.PASSWORD)
@@ -30,8 +30,15 @@ def site_auth(driver):
     return driver
 
 @pytest.fixture
-def precondition(driver):
-    # Precondition - logged user, emptied cart
+def log_out(log_in):
+    driver = log_in
+    driver.find_element(*l.BURGER_MENU).click()
+    driver.find_element(*l.LOGOUT).click()
+    return driver
+
+@pytest.fixture
+def setup_teardown(driver):
+    # Pre-condition (setup) - user logged in, shopping cart is empty
     driver.get(gv.MAIN_PAGE)
     driver.find_element(*l.USERNAME_FIELD).send_keys(gv.LOGIN)
     driver.find_element(*l.PASSWORD_FIELD).send_keys(gv.PASSWORD)
@@ -39,5 +46,8 @@ def precondition(driver):
     driver.find_element(*l.BURGER_MENU).click()
     driver.find_element(*l.RESET_APP_STATE).click()
     driver.find_element(*l.CLOSE_BUTTON).click()
-    return driver
-
+    yield driver # Test run
+    # Post-condition (teardown) - cart is empty, shopping user logged out
+    driver.find_element(*l.BURGER_MENU).click()
+    driver.find_element(*l.RESET_APP_STATE).click()
+    driver.find_element(*l.LOGOUT).click()
