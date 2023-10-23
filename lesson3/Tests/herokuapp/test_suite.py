@@ -26,7 +26,8 @@ def test_add_2_remove_1_element(driver):
     assert number_of_del_buttons() == 1
 
 def test_basic_auth(driver):
-    pass
+    driver.get(f"http://{GV.LOGIN}:{GV.PASSWORD}@{GV.BASIC_AUTH_PAGE[8:]}")
+    assert driver.find_element(*L.AUTH_MESSAGE).text == GV.AUTH_MESSAGE_TEXT
 
 def test_broken_images(driver):
     pass
