@@ -37,6 +37,13 @@ def log_out(log_in):
     return driver
 
 @pytest.fixture
+def reset_app_state(log_in):
+    driver = log_in
+    driver.find_element(*l.BURGER_MENU).click()
+    driver.find_element(*l.RESET_APP_STATE).click()
+    return driver
+
+@pytest.fixture
 def setup_teardown(driver):
     # Pre-condition (setup) - user logged in, shopping cart is empty
     driver.get(gv.MAIN_PAGE)
