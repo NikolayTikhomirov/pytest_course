@@ -18,3 +18,4 @@ def test_unsuccessful_login(driver):
 
 def test_successful_login(site_auth):
     assert site_auth.current_url == gv.INVENTORY_PAGE
+
