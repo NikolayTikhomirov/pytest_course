@@ -16,6 +16,7 @@ def chrome_options():
 @pytest.fixture
 def driver(chrome_options):
     driver = webdriver.Chrome(options=chrome_options)
+    # Implicitly wait by default for all elements
     driver.implicitly_wait(gv.MAX_TIMEOUT)
     yield driver
     driver.quit()
@@ -29,13 +30,8 @@ def site_auth(driver):
     return driver
 
 @pytest.fixture
-def reset_app_state(site_auth, driver):
-    driver.find_element(*l.BURGER_MENU).click()
-    driver.find_element(*l.RESET_APP_STATE).click()
-    driver.find_element(*l.CLOSE_BUTTON).click()
-
-@pytest.fixture
-def logged_user_emptied_cart(driver):
+def precondition(driver):
+    # Precondition - logged user, emptied cart
     driver.get(gv.MAIN_PAGE)
     driver.find_element(*l.USERNAME_FIELD).send_keys(gv.LOGIN)
     driver.find_element(*l.PASSWORD_FIELD).send_keys(gv.PASSWORD)
@@ -43,3 +39,5 @@ def logged_user_emptied_cart(driver):
     driver.find_element(*l.BURGER_MENU).click()
     driver.find_element(*l.RESET_APP_STATE).click()
     driver.find_element(*l.CLOSE_BUTTON).click()
+    return driver
+
