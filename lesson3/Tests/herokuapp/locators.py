@@ -13,5 +13,8 @@ ADD_ELEMENT_BUTTON = (By.XPATH, "//button[text()='Add Element']")
 DELETE_ELEMENT_BUTTON = (By.XPATH, "//div[@id='elements']/button")
 DELETE_BUTTONS_CONTAINER = (By.XPATH, "//div[@id='elements']")
 
+# Basic auth
+AUTH_MESSAGE = (By.XPATH, "//p")
+
 # Other elements
 ANY_CHILD_ELEMENT = (By.XPATH, "./*")

@@ -14,3 +14,5 @@ CHECKBOXES_PAGE = "https://the-internet.herokuapp.com/checkboxes"
 # Timeout
 TIMEOUT = 1
 MAX_TIMEOUT = 10
+
+AUTH_MESSAGE_TEXT = "Congratulations! You must have the proper credentials."
