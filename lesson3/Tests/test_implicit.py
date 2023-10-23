@@ -9,7 +9,7 @@ from selenium.webdriver.support.wait import WebDriverWait
 def chrome_options():
     options = Options()
     options.add_argument('--incognito')
-    options.add_argument('--headless')
+    # options.add_argument('--headless')
     return options
 
 @pytest.fixture
@@ -32,10 +32,6 @@ def test_site_registration(driver):
     assert driver.find_element(*v.LOADER_INDICATOR).is_displayed(),\
         "Loading indicator is not displayed"
 
-    # Waiting for the loading indicator to disappear and a message to appear
-    WebDriverWait(driver, v.MAX_TIMEOUT).until(EC.all_of(
-            EC.invisibility_of_element_located(v.LOADER_INDICATOR),
-            EC.presence_of_element_located(v.SUCCESS_MESSAGE)))
-    # Checking for a message
+    WebDriverWait(driver, v.MAX_TIMEOUT).until(EC.invisibility_of_element_located(v.LOADER_INDICATOR))
     assert driver.find_element(*v.SUCCESS_MESSAGE).text == v.SUCCESS_MESSAGE_TEXT,\
         "Message 'Вы успешно зарегистрированы' is not displayed"
