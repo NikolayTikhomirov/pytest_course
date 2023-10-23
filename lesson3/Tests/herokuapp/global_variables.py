@@ -8,7 +8,7 @@ WRONG_PASSWORD = "unknown_password"
 MAIN_PAGE = "https://the-internet.herokuapp.com/"
 ADD_REMOVE_ELEMENTS_PAGE = "https://the-internet.herokuapp.com/add_remove_elements/"
 BASIC_AUTH_PAGE = "https://the-internet.herokuapp.com/basic_auth"
-BROKEN_IMAGES_PAGE = "https://saucelabs.com/"
+BROKEN_IMAGES_PAGE = "https://the-internet.herokuapp.com/broken_images"
 CHECKBOXES_PAGE = "https://the-internet.herokuapp.com/checkboxes"
 
 # Timeout
