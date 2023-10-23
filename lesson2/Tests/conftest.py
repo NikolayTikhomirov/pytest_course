@@ -3,14 +3,13 @@ from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 import locators as l
 import global_variables as gv
-from time import sleep
 
 @pytest.fixture
 def chrome_options():
     options = Options()
     # options.add_argument('--window-size=100,100')
     options.add_argument('--incognito')
-    # options.add_argument('--headless')
+    options.add_argument('--headless')
     return options
 
 @pytest.fixture
@@ -34,13 +33,6 @@ def log_out(log_in):
     driver = log_in
     driver.find_element(*l.BURGER_MENU).click()
     driver.find_element(*l.LOGOUT).click()
-    return driver
-
-@pytest.fixture
-def reset_app_state(log_in):
-    driver = log_in
-    driver.find_element(*l.BURGER_MENU).click()
-    driver.find_element(*l.RESET_APP_STATE).click()
     return driver
 
 @pytest.fixture

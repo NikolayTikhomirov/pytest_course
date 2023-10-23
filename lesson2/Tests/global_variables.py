@@ -17,8 +17,3 @@ CHECKOUT_COMPLETE = "https://www.saucedemo.com/checkout-complete.html"
 # Timeout
 TIMEOUT = 1
 MAX_TIMEOUT = 10
-
-# Inventory
-# Product card
-# [1] in the end - index of an element
-ADD_TO_CART_INVENTORY_1_PRODUCT = "//following::button[@class='btn btn_primary btn_small btn_inventory '][1]"
