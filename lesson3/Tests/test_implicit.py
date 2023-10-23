@@ -28,9 +28,8 @@ SUCCESS_MESSAGE = (By.XPATH, "//p[@id='successMessage']")
 @pytest.fixture
 def chrome_options():
     options = Options()
-    # options.add_argument('--window-size=100,100')
     options.add_argument('--incognito')
-    # options.add_argument('--headless')
+    options.add_argument('--headless')
     return options
 
 @pytest.fixture
