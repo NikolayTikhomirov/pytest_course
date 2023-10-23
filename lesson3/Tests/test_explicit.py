@@ -15,16 +15,20 @@ def chrome_options():
 @pytest.fixture
 def driver(chrome_options):
     driver = webdriver.Chrome(options=chrome_options)
-    driver.implicitly_wait(v.MAX_TIMEOUT)
     yield driver
     driver.quit()
 
-def test_site_registration(driver):
+@pytest.fixture
+def wait(driver):
+    return WebDriverWait(driver, v.TIMEOUT)
+
+def test_site_registration(driver, wait):
     driver.get(v.MAIN_PAGE)
     assert driver.find_element(*v.SITE_TITLE).text == v.SITE_TITLE_TEXT,\
         "Site title is not 'Практика с ожиданиями в Selenium'"
 
-    driver.find_element(*v.START_TESTING_BUTTON).click()
+    wait.until(EC.element_to_be_clickable(v.START_TESTING_BUTTON)).click()
+    # driver.find_element(*v.START_TESTING_BUTTON).click()
     driver.find_element(*v.LOGIN_FIELD).send_keys(v.LOGIN)
     driver.find_element(*v.PASSWORD_FIELD).send_keys(v.PASSWORD)
     driver.find_element(*v.AGREE_CHECKBOX).click()
@@ -32,10 +36,8 @@ def test_site_registration(driver):
     assert driver.find_element(*v.LOADER_INDICATOR).is_displayed(),\
         "Loading indicator is not displayed"
 
-    # Waiting for the loading indicator to disappear and a message to appear
-    WebDriverWait(driver, v.MAX_TIMEOUT).until(EC.all_of(
+    wait.until(EC.all_of(
             EC.invisibility_of_element_located(v.LOADER_INDICATOR),
             EC.presence_of_element_located(v.SUCCESS_MESSAGE)))
-    # Checking for a message
     assert driver.find_element(*v.SUCCESS_MESSAGE).text == v.SUCCESS_MESSAGE_TEXT,\
         "Message 'Вы успешно зарегистрированы' is not displayed"
