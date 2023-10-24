@@ -30,7 +30,23 @@ def test_basic_auth(driver):
     assert driver.find_element(*L.AUTH_MESSAGE).text == GV.AUTH_MESSAGE_TEXT
 
 def test_broken_images(driver):
-    pass
+    driver.get(GV.BROKEN_IMAGES_PAGE)
+    assert driver.current_url == GV.BROKEN_IMAGES_PAGE
+
+    container = driver.find_element(*L.IMAGE_CONTAINER)
+    all_img_sources = container.find_elements(*L.IMG_CHILD_ELEMENTS)
+    broken_img_count = 0
+    correct_img_count = 0
+
+    for i in all_img_sources:
+        url = i.get_attribute("src")
+        if url.startswith(GV.IMG_ROOT_PATH):
+            correct_img_count += 1
+        else:
+            broken_img_count += 1
+    print(f"\nFrom {len(all_img_sources)} images, {broken_img_count} broken and {correct_img_count} correct")
+    assert correct_img_count == 1
+
 
 def test_checkbox(driver):
     pass
