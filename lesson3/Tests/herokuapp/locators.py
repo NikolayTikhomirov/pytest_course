@@ -16,5 +16,10 @@ DELETE_BUTTONS_CONTAINER = (By.XPATH, "//div[@id='elements']")
 # Basic auth
 AUTH_MESSAGE = (By.XPATH, "//p")
 
+# Broken images
+IMAGES_ELEMENTS = (By.XPATH, "//div[@class='example']/img")
+
 # Other elements
 ANY_CHILD_ELEMENT = (By.XPATH, "./*")
+IMAGE_CONTAINER = (By.XPATH, "//div[@class='example']")
+IMG_CHILD_ELEMENTS = (By.XPATH, ".//img")
