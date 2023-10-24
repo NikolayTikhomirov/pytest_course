@@ -6,8 +6,6 @@ PASSWORD_FIELD = (By.XPATH, "//input[@data-test='password']")
 LOGIN_BUTTON = (By.XPATH, "//input[@data-test='login-button']")
 LOGIN_ERROR = (By.XPATH, "//div[@class='error-message-container error']")
 
-
-
 # Add/Remove Elements
 ADD_ELEMENT_BUTTON = (By.XPATH, "//button[text()='Add Element']")
 DELETE_ELEMENT_BUTTON = (By.XPATH, "//div[@id='elements']/button")
@@ -18,8 +16,12 @@ AUTH_MESSAGE = (By.XPATH, "//p")
 
 # Broken images
 IMAGES_ELEMENTS = (By.XPATH, "//div[@class='example']/img")
+IMAGE_CONTAINER = (By.XPATH, "//div[@class='example']")
+IMG_CHILD_ELEMENTS = (By.XPATH, ".//img")
+
+# Checkboxes
+CHECKBOX_1 = (By.XPATH, "//input[@type='checkbox'][1]")
+CHECKBOX_2 = (By.XPATH, "//input[@type='checkbox'][2]")
 
 # Other elements
 ANY_CHILD_ELEMENT = (By.XPATH, "./*")
-IMAGE_CONTAINER = (By.XPATH, "//div[@class='example']")
-IMG_CHILD_ELEMENTS = (By.XPATH, ".//img")
