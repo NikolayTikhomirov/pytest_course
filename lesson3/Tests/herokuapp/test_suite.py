@@ -1,8 +1,5 @@
 import locators as L
 import global_variables as GV
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
-from time import sleep
 
 def test_add_2_remove_1_element(driver):
     # All delete buttons the same and located in 1 div element
@@ -47,6 +44,14 @@ def test_broken_images(driver):
     print(f"\nFrom {len(all_img_sources)} images, {broken_img_count} broken and {correct_img_count} correct")
     assert correct_img_count == 1
 
-
 def test_checkbox(driver):
-    pass
+    driver.get(GV.CHECKBOXES_PAGE)
+    assert driver.current_url == GV.CHECKBOXES_PAGE
+    assert driver.find_element(*L.CHECKBOX_1).get_attribute("checked") is None
+    assert driver.find_element(*L.CHECKBOX_2).get_attribute("checked")
+
+    driver.find_element(*L.CHECKBOX_1).click()
+    assert driver.find_element(*L.CHECKBOX_1).get_attribute("checked")
+
+    driver.find_element(*L.CHECKBOX_2).click()
+    assert driver.find_element(*L.CHECKBOX_2).get_attribute("checked") is None
