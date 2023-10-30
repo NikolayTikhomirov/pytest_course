@@ -1,5 +1,6 @@
 import locators as L
 import global_variables as GV
+from selenium.webdriver.support import expected_conditions as EC
 
 def test_add_2_remove_1_element(driver):
     # All delete buttons the same and located in 1 div element
@@ -56,12 +57,17 @@ def test_checkbox(driver):
     driver.find_element(*L.CHECKBOX_2).click()
     assert driver.find_element(*L.CHECKBOX_2).get_attribute("checked") is None
 
-def test_hidden_element(driver):
+def test_hidden_element(driver, wait):
     driver.get(GV.HIDDEN_ELEMENT_PAGE)
     assert driver.current_url == GV.HIDDEN_ELEMENT_PAGE
-    # assert driver.find_element(*L.HELLO_WORLD_ELEMENT).is_enabled()
     assert not driver.find_element(*L.HELLO_WORLD_ELEMENT).is_displayed()
 
     driver.find_element(*L.START_BUTTON).click()
     assert driver.find_element(*L.LOADING_BAR).is_displayed()
-    # assert driver.find_element(*L.HELLO_WORLD_ELEMENT).is_displayed()
+    wait.until(EC.invisibility_of_element_located(L.LOADING_BAR))
+    assert driver.find_element(*L.HELLO_WORLD_ELEMENT).is_displayed()
+
+def test_rendered_element(driver, wait):
+    driver.get(GV.RENDERED_ELEMENT_PAGE)
+    assert driver.current_url == GV.RENDERED_ELEMENT_PAGE
+    assert driver.find_element(*L.HELLO_WORLD_ELEMENT).is_displayed()
