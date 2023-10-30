@@ -17,6 +17,6 @@ RENDERED_ELEMENT_PAGE = "https://the-internet.herokuapp.com/dynamic_loading/2"
 
 # Timeout
 TIMEOUT = 1
-MAX_TIMEOUT = 30
+MAX_TIMEOUT = 10
 
 AUTH_MESSAGE_TEXT = "Congratulations! You must have the proper credentials."

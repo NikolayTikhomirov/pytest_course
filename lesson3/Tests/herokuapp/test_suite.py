@@ -1,6 +1,7 @@
 import locators as L
 import global_variables as GV
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.common.exceptions import NoSuchElementException
 
 def test_add_2_remove_1_element(driver):
     # All delete buttons the same and located in 1 div element
@@ -64,10 +65,23 @@ def test_hidden_element(driver, wait):
 
     driver.find_element(*L.START_BUTTON).click()
     assert driver.find_element(*L.LOADING_BAR).is_displayed()
+
     wait.until(EC.invisibility_of_element_located(L.LOADING_BAR))
     assert driver.find_element(*L.HELLO_WORLD_ELEMENT).is_displayed()
 
 def test_rendered_element(driver, wait):
     driver.get(GV.RENDERED_ELEMENT_PAGE)
     assert driver.current_url == GV.RENDERED_ELEMENT_PAGE
+
+    try:
+        driver.find_element(*L.HELLO_WORLD_ELEMENT)
+    except NoSuchElementException:
+        assert True
+    else:
+        assert False
+
+    driver.find_element(*L.START_BUTTON).click()
+    assert driver.find_element(*L.LOADING_BAR).is_displayed()
+
+    wait.until(EC.invisibility_of_element_located(L.LOADING_BAR))
     assert driver.find_element(*L.HELLO_WORLD_ELEMENT).is_displayed()
