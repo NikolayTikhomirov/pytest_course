@@ -8,7 +8,8 @@ from selenium.webdriver.support.wait import WebDriverWait
 def chrome_options():
     options = Options()
     # options.add_argument('--incognito')
-    options.add_argument('--window-size=1920,1080')
+    # options.add_argument('--window-size=1920,1080')
+    options.add_argument('--start-maximized')
     # options.add_argument('--headless')
     return options
 
