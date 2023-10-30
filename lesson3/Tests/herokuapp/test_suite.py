@@ -55,3 +55,13 @@ def test_checkbox(driver):
 
     driver.find_element(*L.CHECKBOX_2).click()
     assert driver.find_element(*L.CHECKBOX_2).get_attribute("checked") is None
+
+def test_hidden_element(driver):
+    driver.get(GV.HIDDEN_ELEMENT_PAGE)
+    assert driver.current_url == GV.HIDDEN_ELEMENT_PAGE
+    # assert driver.find_element(*L.HELLO_WORLD_ELEMENT).is_enabled()
+    assert not driver.find_element(*L.HELLO_WORLD_ELEMENT).is_displayed()
+
+    driver.find_element(*L.START_BUTTON).click()
+    assert driver.find_element(*L.LOADING_BAR).is_displayed()
+    # assert driver.find_element(*L.HELLO_WORLD_ELEMENT).is_displayed()
