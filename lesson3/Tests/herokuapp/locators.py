@@ -23,5 +23,10 @@ IMG_CHILD_ELEMENTS = (By.XPATH, ".//img")
 CHECKBOX_1 = (By.XPATH, "//input[@type='checkbox'][1]")
 CHECKBOX_2 = (By.XPATH, "//input[@type='checkbox'][2]")
 
+# Dynamically Loaded Page Elements (for both pages)
+START_BUTTON = (By.XPATH, "//button[text()='Start']")
+LOADING_BAR = (By.XPATH, "//div[@id='loading']")
+HELLO_WORLD_ELEMENT = (By.XPATH, "//h4[text()='Hello World!']")
+
 # Other elements
 ANY_CHILD_ELEMENT = (By.XPATH, "./*")
