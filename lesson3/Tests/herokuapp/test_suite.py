@@ -73,12 +73,15 @@ def test_rendered_element(driver, wait):
     driver.get(GV.RENDERED_ELEMENT_PAGE)
     assert driver.current_url == GV.RENDERED_ELEMENT_PAGE
 
+    driver.implicitly_wait(1)
     try:
         driver.find_element(*L.HELLO_WORLD_ELEMENT)
     except NoSuchElementException:
         assert True
     else:
         assert False
+    finally:
+        driver.implicitly_wait(GV.MAX_TIMEOUT)
 
     driver.find_element(*L.START_BUTTON).click()
     assert driver.find_element(*L.LOADING_BAR).is_displayed()
