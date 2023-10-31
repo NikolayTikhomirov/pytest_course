@@ -6,7 +6,9 @@ from selenium.webdriver.support.ui import WebDriverWait
 @pytest.fixture
 def options():
     options = Options()
-    options.add_argument('--headless')
+    # options.add_argument('--headless')
+    options.add_argument('--start-maximized')
+    # options.add_argument("--incognito")
     return options 
 
 
