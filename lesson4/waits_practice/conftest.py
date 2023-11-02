@@ -6,16 +6,14 @@ from selenium.webdriver.support.ui import WebDriverWait
 @pytest.fixture
 def options():
     options = Options()
-    # options.add_argument('--window-size=2880,1800')
-    options.add_argument('--start-maximized')
+    options.add_argument('--window-size=2880,1800')
     return options 
 
 
 @pytest.fixture 
 def driver(options):
     driver = webdriver.Chrome(options=options)
-    yield driver
-    driver.quit()
+    return driver
 
 
 @pytest.fixture

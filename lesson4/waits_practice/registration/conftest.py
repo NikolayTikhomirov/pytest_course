@@ -1,5 +1,6 @@
 from faker import Faker 
-import pytest 
+import pytest
+from registration.conftest import driver, options, wait
 
 
 @pytest.fixture
